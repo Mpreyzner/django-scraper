@@ -1,2 +1,12 @@
- Django>=1.8,<2.0
- psycopg2
+beautifulsoup4==4.6.3
+Django==2.1.4
+django-background-tasks==1.2.0
+git+https://github.com/transifex/django-events.git@master
+djangorestframework==3.9.0
+langdetect==1.0.7
+lxml==4.2.5
+nltk==3.4
+requests==2.20.1
+Unidecode==1.0.23
+urllib3==1.24.1
+psycopg2==2.7.6.1
