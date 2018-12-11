@@ -40,8 +40,15 @@ INSTALLED_APPS = [
     'app.scraper',
     'app.api',
     'app.stats',
+    'background_task',
+    'events',
 ]
 
+EVENTS = {
+    'tests_pass': [
+        'app.stats.actions.RecalculateStatsAction',
+    ]
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
