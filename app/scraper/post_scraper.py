@@ -23,6 +23,7 @@ class PostScraper:
             self.get_posts(url)
             next_page_html = self.get_elements_from_page(self.get_page_soup(url), self.next_page_class)
             if len(next_page_html) == 0:
+                print('PostScraper: Scraping finished')
                 return
             next_page_path = next_page_html[0]['href']
             url = parsed_url.scheme + '://' + parsed_url.netloc + next_page_path

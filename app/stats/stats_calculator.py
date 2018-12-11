@@ -8,7 +8,7 @@ from .models import AuthorStats, TotalStats
 class StatsCalculator:
 
     def recalculate(self, post):
-        print('recalculate started for post:' + post.title)
+        print('StatsCalculator:: recalculate started for post:' + post.title)
         if post.language != 'pl':
             return
 
