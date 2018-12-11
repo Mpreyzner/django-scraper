@@ -3,7 +3,7 @@ import requests
 from urllib.parse import urlparse
 import unidecode
 from langdetect import detect
-from events.models import tests_pass
+from events.models import post_scraped
 from .models import Post, Author
 
 
@@ -23,7 +23,10 @@ class PostScraper:
         while not finished:
             print("processing: " + url)
             self.get_posts(url)
-            next_page_path = self.get_elements_from_page(self.get_page_soup(url), self.next_page_class)[0]['href']
+            next_page_html = self.get_elements_from_page(self.get_page_soup(url), self.next_page_class)
+            if len(next_page_html) == 0:
+                return
+            next_page_path = next_page_html[0]['href']
             # TODO check if given index exists, if it doesn't then we're finished
             url = parsed_url.scheme + '://' + parsed_url.netloc + next_page_path
 
@@ -55,7 +58,7 @@ class PostScraper:
             post = Post(title=title, author=auth, content=content, language=language)
             post.save()
 
-            tests_pass.emit(post)
+            post_scraped.emit(post)
         return posts
 
     def get_post_details(self, post_url):

@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 ]
 
 EVENTS = {
-    'tests_pass': [
+    'post_scraped': [
         'app.stats.actions.RecalculateStatsAction',
     ]
 }
