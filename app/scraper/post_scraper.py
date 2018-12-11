@@ -7,27 +7,24 @@ from events.models import post_scraped
 from .models import Post, Author
 
 
-# TODO rename test_pass to other event name
-
 class PostScraper:
     url = 'https://teonite.com/blog'
     next_page_class = 'older-posts'
     timeout = 5
 
     def execute(self):
-        print('Scraping started')
+        print('PostScraper: Scraping started')
         parsed_url = urlparse(self.url)
 
         finished = False
         url = self.url
         while not finished:
-            print("processing: " + url)
+            print("PostScraper processing: " + url)
             self.get_posts(url)
             next_page_html = self.get_elements_from_page(self.get_page_soup(url), self.next_page_class)
             if len(next_page_html) == 0:
                 return
             next_page_path = next_page_html[0]['href']
-            # TODO check if given index exists, if it doesn't then we're finished
             url = parsed_url.scheme + '://' + parsed_url.netloc + next_page_path
 
     def get_posts(self, url):
@@ -66,11 +63,18 @@ class PostScraper:
         author_class = 'author-content'
 
         soup = self.get_page_soup(post_url)
-        author = self.get_elements_from_page(soup, author_class)[0].find('h4').text.strip()
-        # TODO what if there is no such element??
-        content = self.get_elements_from_page(soup, content_class)[0].text.strip()
-        # TODO make unpacking explicit
-        return content, author
+        author_html = self.get_elements_from_page(soup, author_class)
+        if len(author_html) == 0:
+            raise Exception('html with author not found, searched for class:' + author_class + ' on page:' + post_url)
+        author = author_html[0].find('h4').text.strip()
+
+        content_html = self.get_elements_from_page(soup, content_class)
+        if len(content_html) == 0:
+            raise Exception(
+                'html with post content not found, searched for class:' + content_class + ' on page:' + post_url)
+        content = content_html[0].text.strip()
+
+        return {'content': content, 'author': author}
 
     def get_elements_from_page(self, soup, css_class):
         return soup.select('.' + css_class)
