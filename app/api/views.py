@@ -20,36 +20,16 @@ class AuthorList(generics.ListAPIView):
         authors = {}
         for author in queryset.all():
             authors.update({author.tokenized_name: author.name})
-        # authors = [{author.tokenized_name: author.name} for author in queryset.all()]
         return Response(authors)
 
 
-# {
-#   "andrzejpiasecki": "Andrzej Piasecki",
-#   "kamilchudy": "Kamil Chudy",
-#   "lukaszpilatowski": "ukasz Piatowski"
-# }
-@api_view(http_method_names=['GET'])
-def author_stats(request, author):
-    # TODO make this a class
-    author = Author.objects.get(tokenized_name=author)
-    stats = AuthorStats.objects.get(author=author)
-    counter = Counter(json.loads(stats.word_counts))
-    return Response(dict(counter.most_common(10)))
+class AuthorStats(generics.ListAPIView):
+    def list(request, author, **kwargs):
+        author = Author.objects.get(tokenized_name=author)
+        stats = AuthorStats.objects.get(author=author)
+        counter = Counter(json.loads(stats.word_counts))
+        return Response(dict(counter.most_common(10)))
 
-
-# {
-#   "TEONITE": 500,
-#   "jest": 444,
-#   "super": 333,
-#   "tra": 234,
-#   "la": 456,
-#   "lala": 678,
-#   "heja": 123,
-#   "ho": 4564,
-#   "pa": 55,
-#   "papa": 345
-# }
 
 class TotalStats(generics.ListAPIView):
     queryset = TotalStats.objects.all()
@@ -60,16 +40,3 @@ class TotalStats(generics.ListAPIView):
         stats = queryset.first()
         counter = Counter(json.loads(stats.word_counts))
         return Response(dict(counter.most_common(10)))
-    #
-    # {
-    #     "TEONITE": 2311,
-    #     "jest": 3455,
-    #     "super": 4566,
-    #     "tra": 2323,
-    #     "la": 4545,
-    #     "lala": 4545,
-    #     "heja": 8979,
-    #     "ho": 9090,
-    #     "pa": 2323,
-    #     "papa": 4545
-    # }
