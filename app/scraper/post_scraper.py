@@ -3,15 +3,16 @@ import requests
 from urllib.parse import urlparse
 import unidecode
 from langdetect import detect
-from .signals import post_saved
 from events.models import post_scraped
 from .models import Post, Author
+from langdetect import DetectorFactory
 
 
 class PostScraper:
     url = 'https://teonite.com/blog'
     next_page_class = 'older-posts'
     timeout = 5
+    DetectorFactory.seed = 0
 
     def execute(self):
         print('PostScraper: Scraping started')
@@ -53,11 +54,12 @@ class PostScraper:
                 auth = Author.objects.get(name=author)
 
             language = detect(content)
-            # print('Recognized language: ' + language + "for post:  " + title)
+            if language not in ['pl', 'en']:
+                raise Exception(
+                    'Received unexpected language: pl or en expected, got: ' + language + content)
             post = Post(title=title, author=auth, content=content, language=language)
             post.save()
             post_scraped.emit(post)
-            # post_saved.send('PostScraper', post=post)
         return posts
 
     def get_post_details(self, post_url):
@@ -76,7 +78,7 @@ class PostScraper:
                 'html with post content not found, searched for class:' + content_class + ' on page:' + post_url)
         content = content_html[0].text.strip()
 
-        return {'content': content, 'author': author}
+        return content, author
 
     def get_elements_from_page(self, soup, css_class):
         return soup.select('.' + css_class)

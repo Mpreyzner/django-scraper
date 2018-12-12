@@ -10,6 +10,7 @@ class StatsCalculator:
     def recalculate(self, post):
         print('StatsCalculator:: recalculate started for post:' + post.title)
         if post.language != 'pl':
+            print('StatsCalculator:: recalculate stopped post not in polish lang: ' + post.language)
             return
 
         word_tokens = word_tokenize(post.content)
@@ -52,6 +53,7 @@ class StatsCalculator:
 
     def update_total_stats(self, words_from_post_counter):
         # todo move to model
+        print('StatsCalculator:: updating total stats:')
         total_stats = self.get_total_stats()
         total_stats_counter = Counter(json.loads(total_stats.word_counts))
         total_stats_counter.update(words_from_post_counter)
@@ -68,6 +70,7 @@ class StatsCalculator:
 
     def update_author_stats(self, author, words_from_post_counter):
         # todo move to model
+        print('StatsCalculator:: updating author stats:' + author.tokenized_name)
         author_stats = self.get_author_stats(author)
         updated_author_counter = Counter(json.loads(author_stats.word_counts))
         updated_author_counter.update(words_from_post_counter)
