@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'app.scraper',
     'app.api',
     'app.stats',
-    'background_task',
+    # 'background_task',
     'events',
 ]
 

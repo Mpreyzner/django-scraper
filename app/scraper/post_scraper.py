@@ -3,6 +3,7 @@ import requests
 from urllib.parse import urlparse
 import unidecode
 from langdetect import detect
+from .signals import post_saved
 from events.models import post_scraped
 from .models import Post, Author
 
@@ -32,13 +33,13 @@ class PostScraper:
         title_class = 'post-title'
         parsed_url = urlparse(url)
         posts = self.get_elements_from_page(self.get_page_soup(url), title_class)
-
         for a in posts:
             title = a.text.strip()
             post_exists = Post.objects.filter(title=title).exists()
             if post_exists:
+                print('post already exists')
                 continue
-
+            print('PostScraper: Scraping post: ' + title)
             post_url = a.find('a')['href']
             content, author = self.get_post_details(
                 (parsed_url.scheme + '://' + parsed_url.netloc + post_url))  # use some function for url
@@ -55,8 +56,8 @@ class PostScraper:
             # print('Recognized language: ' + language + "for post:  " + title)
             post = Post(title=title, author=auth, content=content, language=language)
             post.save()
-
             post_scraped.emit(post)
+            # post_saved.send('PostScraper', post=post)
         return posts
 
     def get_post_details(self, post_url):
