@@ -40,8 +40,12 @@ INSTALLED_APPS = [
     'app.scraper',
     'app.api',
     'app.stats',
-    # 'background_task',
+    'django_cron',
     'events',
+]
+
+CRON_CLASSES = [
+    'app.scraper.cron.ScraperCronJob',
 ]
 
 EVENTS = {

@@ -9,6 +9,7 @@ services:
       PGDATA: /tmp
   web:
     build: .
+    image: django-scraper__web
     command: python3 manage.py runserver 0.0.0.0:8080
     volumes:
       - .:/code
@@ -16,5 +17,10 @@ services:
       - "8080:8080"
     depends_on:
       - db
+  run_cronjobs:
+    image: django-scraper__web
+    depends_on:
+      - web
+    command: python manage.py runcrons
 volumes:
   postgres:
