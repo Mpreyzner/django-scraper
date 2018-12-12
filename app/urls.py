@@ -16,8 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include, path
+from .api.urls import paths
 
-print (include('app.api.urls'))
-urlpatterns = [
-    path('', include('api.urls')),
-]
+# dirty workaround
+urlpatterns = paths
+# urlpatterns = [
+#     path('', include('api.urls')),
+# ]
