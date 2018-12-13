@@ -1,0 +1,59 @@
+[
+  {
+    "model": "scraper.post",
+    "pk": 860,
+    "fields": {
+      "added": "2018-12-13T20:51:27.033Z",
+      "title": "Nie czyta\u0107",
+      "author": 26,
+      "content": "Javoviec jakim\u015b cudem sp\u0142odzi\u0142 dziecko. Mia\u0142 wymy\u015bli\u0107 imi\u0119 dla dziecka. Na wszelki wypadek przygotowa\u0142 2, jakby urodzi\u0142y si\u0119 bli\u017aniaki. Na nieszcz\u0119\u015bcie urodzi\u0142y si\u0119 trojaczki i dosta\u0142y imiona: Ja\u015b, Sta\u015b, ArrayIndexOutOfBoundsException",
+      "language": "pl"
+    }
+  },
+  {
+    "model": "scraper.post",
+    "pk": 861,
+    "fields": {
+      "added": "2018-12-13T20:57:14.075Z",
+      "title": "Just a quote",
+      "author": 27,
+      "content": "The Doctor: I'm being extremely clever up here and there's no one to stand around looking impressed! What's the point in having you all?",
+      "language": "en"
+    }
+  },
+  {
+    "model": "scraper.post",
+    "pk": 863,
+    "fields": {
+      "added": "2018-12-13T21:28:22.213Z",
+      "title": "Kawal",
+      "author": 28,
+      "content": " Pewnego razu pastuch przep\u0119dza\u0142 swoje owce z jednego pastwiska na drugie. Nagle zatrzyma\u0142o si\u0119 przy nim nowiutkie BMW. Kierowca, m\u0142ody cz\u0142owiek w garniturze za 10tys z\u0142, pyta:\n- Czy je\u017celi powiem Ci ile dok\u0142adnie masz owiec w stadzie, dasz mi jedn\u0105 z nich?\nOwczarz popatrza\u0142 na facia, na swoje stado po czym m\u00f3wi:\n- Jasne, czemu nie?\nKole\u015b z BMW wyci\u0105gn\u0105\u0142 DELL pod\u0142\u0105czonego do kom\u00f3rki, pod\u0142\u0105czy\u0142 si\u0119 do netu, wszed\u0142 na stron\u0119 NASA i za pomoc\u0105 GPS dok\u0142adnie okre\u015bli\u0142 swoj\u0105 pozycj\u0119. Poda\u0142 j\u0105 do satelity, kt\u00f3ry zrobi\u0142 zdj\u0119cie w wysokiej rozdzielczo\u015bci, przerzuci\u0142 je do Photoshopa, przekonwertowa\u0142 i wys\u0142a\u0142 do Hamburga do obr\u00f3bki. Po chwili dosta\u0142 info, \u017ce zdj\u0119cie jest ju\u017c obrobione, dosta\u0142 adres do bazy danych, po\u0142\u0105czy\u0142 si\u0119 z ni\u0105, zapakowa\u0142 dane do EXCELa, wygenerowa\u0142 skomplikowane regu\u0142ki, wydrukowa\u0142 raport na 10ciu stronach swojej laserowej drukarki, odda\u0142 go owczarzowi i m\u00f3wi:\n- Masz w stadzie 1394 owiec.\n- To prawda - powiedzia\u0142 owczarz - Jak przypuszczam zabierzesz teraz jedn\u0105 z nich?\nPo czym sta\u0142 spokojnie i czeka\u0142 a\u017c kole\u015b z BMW zabierze owc\u0119. Tamtem zacz\u0105\u0142 si\u0119 rozgl\u0105da\u0107 po zwierz\u0119tach, po chwili wybra\u0142 jedno, zapakowa\u0142 do baga\u017cnika swego BMW i chcia\u0142 ju\u017c odjecha\u0107. Tym razem odezwa\u0142 si\u0119 owczarz:\n- A jak ja ci powiem, jaki jest Tw\u00f3j zaw\u00f3d, to oddasz mi mojego zwierzaka?\n- Jasne, czemu nie?\n- Jeste\u015b konsultantem - powiedzia\u0142 owczarz.\n- O rany, niesamowite. Jak zgad\u0142e\u015b?\n- To bardzo proste - rzek\u0142 owczarz - Zjawi\u0142e\u015b si\u0119 tutaj nie wzywany, \u017c\u0105daj\u0105c zap\u0142aty za odpowied\u017a, kt\u00f3r\u0105 zna\u0142em, na pytanie, kt\u00f3rego nigdy nie zadawa\u0142em. A w dodatku g\u00f3wno wiesz o mojej robocie.... i oddawaj psa! ",
+      "language": "pl"
+    }
+  },
+  {
+    "model": "scraper.author",
+    "pk": 26,
+    "fields": {
+      "name": "Maria Preyzner",
+      "tokenized_name": "mariapreyzner"
+    }
+  },
+  {
+    "model": "scraper.author",
+    "pk": 27,
+    "fields": {
+      "name": "Dr Who",
+      "tokenized_name": "drwho"
+    }
+  },
+  {
+    "model": "scraper.author",
+    "pk": 28,
+    "fields": {
+      "name": "John Doe",
+      "tokenized_name": "johndoe"
+    }
+  }
+]

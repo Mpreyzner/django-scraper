@@ -16,8 +16,7 @@ def test_total_stats():
 
 
 def test_author_stats():
-    pass
-    author = ''  # load something from fixtures
+    author = 'johndoe'
     response = requests.get(url + 'stats/' + author, timeout=1)
     try:
         response.raise_for_status()

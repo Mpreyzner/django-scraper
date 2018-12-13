@@ -23,12 +23,13 @@ class AuthorList(generics.ListAPIView):
         return Response(authors)
 
 
-class AuthorStats(generics.ListAPIView):
-    def list(request, author, **kwargs):
-        author = Author.objects.get(tokenized_name=author)
-        stats = AuthorStats.objects.get(author=author)
-        counter = Counter(json.loads(stats.word_counts))
-        return Response(dict(counter.most_common(10)))
+@api_view(http_method_names=['GET'])
+def author_stats(request, author):
+    # TODO make this a class
+    author = Author.objects.get(tokenized_name=author)
+    stats = AuthorStats.objects.get(author=author)
+    counter = Counter(json.loads(stats.word_counts))
+    return Response(dict(counter.most_common(10)))
 
 
 class TotalStats(generics.ListAPIView):
